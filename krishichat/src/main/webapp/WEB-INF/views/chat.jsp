@@ -267,7 +267,7 @@
 	</div>
 </div>
 <input type="hidden" id="hiddenTextGroupIdForModel" name="" value="">
-<!-- Edit Members of group model -->
+<!-- Edit Member of group model -->
 <div class="modal  fade" id="editGroupMemberModel">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">

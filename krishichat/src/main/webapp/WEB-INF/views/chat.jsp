@@ -207,7 +207,7 @@
 	value="${userSession.id}">
 
 
-<!-- open personal profile model -->
+<!-- open personal profile models -->
 <div class="modal  fade" id="createGroupModel">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">

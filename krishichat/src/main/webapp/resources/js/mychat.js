@@ -328,7 +328,7 @@ function connect() {
 					}
 					else
 					{
-						replaceImageText="<span style='overflow-wrap: break-word'>"+obj.message+"</span>";
+						replaceImageText="<span style='overflow-wrap: break-word' >"+obj.message+"</span>";
 					}
 					
 			        if(obj.fromId==fromId)
@@ -353,7 +353,7 @@ function connect() {
 			        	var incomingMessage=   	"<div class='row'>"+
 													"<div class='card message-card m-1 border-0 bg-transparent' >"+
 														"<div class='card-body border p-1 px-3  bg-white text-center box-shadow' style='border-radius: 20px 20px 20px 3px;'   >"+
-														nameText+replaceImageText +
+														replaceImageText +
 														"</div>"+
 														"<div class='card-footer  border-0 py-1 pr-0 time-tranparent' >"+
 															"<span class='float-rigth'><small class='text-muted'>"+today+"</small></span>"+
@@ -408,6 +408,13 @@ function connect() {
 				var nameText="<span class='text-success'><small>"+name+"</small></span>"+"<br>";
 				if(name==undefined )
 					nameText="<span class=' text-danger'><small>"+message.toEmail+"</small></span>"+"<br>";
+				
+				var type= message.fromId.substr(0, 4);
+				if(type=="USER")
+				{
+					nameText="";
+				}	
+				
 				
 				let today= moment(message.messageTime,"DD/MM/YYYY hh:mm:ss A").calendar();
 				var incomingMessage=null;

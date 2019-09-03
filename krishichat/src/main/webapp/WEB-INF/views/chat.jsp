@@ -127,10 +127,6 @@
 								</li>
 								<c:set var="count" value="${count+1}"></c:set>
 							</c:forEach>
-
-
-
-
 						</ul>
 					</div>
 				</div>
@@ -154,7 +150,6 @@
 							<div class="col-1 py-3" style="font-size: 20px;">
 
 								<div class="btn-group dropleft">
-
 									<button type="button"
 										class="btn border-0  hover-color-darkblue dropdown "
 										style="border-radius: 0 !important; outline: 0px !important; -webkit-appearance: none; box-shadow: none !important;"
@@ -166,7 +161,8 @@
 										<a class="dropdown-item" href="#!"
 											id="editMemberDropdownButton">Edit Members</a> <a
 											class="dropdown-item" href="#!"
-											id="editGroupDetailDropdownButton">Edit Group Detail</a> <a
+											id="editGroupDetailDropdownButton">Edit Group Detail</a>
+											<a
 											class="dropdown-item" href="#!" id="clearChatDropdownButton">Clear
 											Chat</a>
 									</div>

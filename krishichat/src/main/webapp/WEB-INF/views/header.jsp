@@ -27,15 +27,15 @@
 
 
 <!-- KRISHI CHAT title icon -->
-<link rel = "icon" href ="${image}/chat.png" type = "image/x-icon"> 
+<link rel="icon" href="${image}/chat.png" type="image/x-icon">
 
 
- <!-- Bootstrap CSS File -->
+<!-- Bootstrap CSS File -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
 <!-- Libraries CSS Files -->
-<link href="${css}/jquery-ui.css" rel="stylesheet">
-<link href="${css}/jquery.toast.min.css" rel="stylesheet" >
+
+<link href="${css}/jquery.toast.min.css" rel="stylesheet">
 <link href="${css}/fontawesome-all.min.css" rel="stylesheet">
 
 <link href="${css}/devfolio.css" rel="stylesheet">
@@ -47,10 +47,11 @@
 </head>
 <body id="body">
 	<div id="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light "
-			style="background-color: #ffffff; box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);">
-			<a class="navbar-brand" href="${contextPath}/home"><img
-				src="${image}/chat.png" width="40px;"></a>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light navigation-bar "
+			style="background-color: white !important; box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);">
+			<a class="navbar-brand"><img src="${image}/chat.png"
+				width="40px;"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -58,35 +59,35 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<c:if test="${userSession==null}">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link"
-							href="${contextPath}/home">Home <span class="sr-only">(current)</span>
-						</a></li>
-						
-					</ul>
-				</c:if>
+
+				<ul class="navbar-nav ">
+					<li class="nav-item "><a class="nav-link"
+						href="${contextPath}/home"><i class="fa fa-home fa-lg py-1"></i>
+					</a></li>
+
+				</ul>
+
 
 				<c:if test="${userSession!=null}">
-					<!-- Hidden field -->				
+					<!-- Hidden field -->
 					<input type="hidden" id="contextPath" name=""
 						value="${contextPath}">
 					<input type="hidden" id="hiddenTextBoxUserId" name=""
-						value="${user.id}">	
-				
+						value="${user.id}">
+
 					<ul class="navbar-nav mr-auto">
 
 
-						 <li class="nav-item"><a class="nav-link"
-							href="${contextPath}/chat"><i
+						<li class="nav-item"><a class="nav-link"
+							href="${contextPath}/chat"> <i
 								class="far fa-comment-dots fa-lg py-1"></i><sup><span
 									class="nav-link badge badge-warning px-2" style="display: none"
-									id="totalCountMessages">0</span></sup> </a></li> 
+									id="totalCountMessages">0</span></sup>
+						</a></li>
 						<li class="nav-item"></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbardrop"
-							data-toggle="dropdown"> <i
-								class="fas fa-user-friends  fa -lg py-1"></i>
+						<li class="nav-item dropdown "><a
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+								<i class="fas fa-user-friends  fa -lg py-1"></i>
 						</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="${contextPath}/discoverUser">Search
@@ -103,8 +104,9 @@
 					</ul>
 					<ul class="navbar-nav ml-auto .dropdown-menu-right">
 
-						<li class="nav-item"  ><a class="nav-link" id="notifivationPopup" href="#!"><i
-								class="fas fa-bell pt-1" id="notificationButton" ></i><sup><span
+						<li class="nav-item"><a class="nav-link"
+							id="notifivationPopup" href="#!"><i class="fas fa-bell pt-1"
+								id="notificationButton"></i><sup><span
 									class="nav-link badge badge-warning px-2" style="display: none"
 									id="totalCountNotification">0</span></sup> </a></li>
 						<li class="nav-item"></li>
@@ -114,7 +116,8 @@
 							id="navbarDropdown" role="button" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> <img
 								src="${profileImage}/${userSession.profileImagePath}"
-								class="rounded" width="30" height="30" id="navbarProfileImage"> </a>
+								class="rounded" width="30" height="30" id="navbarProfileImage">
+						</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item " href="${contextPath}/showProfile"
 									title="click to show profile">Profile</a>
@@ -124,7 +127,7 @@
 					</ul>
 				</c:if>
 				<c:if test="${userSession==null}">
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto mr-2">
 						<li class="nav-item"><a class="nav-link"
 							href="${contextPath}/login">Login</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -136,12 +139,13 @@
 			</div>
 		</nav>
 	</div>
-	<div id="main">
+	<div id="main" style="background-color: #FFFFFF !important">
 		<div>
 			<c:if test="${message!=null}">
 				<div class="row">
 					<div class=" col-lg-8 mx-auto mt-3">
-						<div class="alert alert-success alert-dismissible fade show box-shadow"
+						<div
+							class="alert alert-success alert-dismissible fade show box-shadow"
 							role="alert">
 							<strong>Message : </strong> ${message}
 							<button type="button" class="close" data-dismiss="alert"
@@ -154,9 +158,10 @@
 
 			</c:if>
 			<c:if test="${error!=null}">
-				<div class="row " >
+				<div class="row ">
 					<div class=" col-lg-8 mx-auto mt-3">
-						<div class="alert alert-danger alert-dismissible fade show box-shadow"
+						<div
+							class="alert alert-danger alert-dismissible fade show box-shadow"
 							role="alert">
 							<strong>Error : </strong> ${error}
 							<button type="button" class="close" data-dismiss="alert"
@@ -168,4 +173,3 @@
 				</div>
 
 			</c:if>
-			

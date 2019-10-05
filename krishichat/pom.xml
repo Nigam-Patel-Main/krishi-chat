@@ -14,6 +14,7 @@
 		<spring-security.version>5.0.12.RELEASE</spring-security.version>
 	</properties>
 	<dependencies>
+
 		<!-- Spring dependency dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -82,7 +83,7 @@
 		</dependency>
 
 
-		<!-- version XML dependency dependency -->
+		<!-- version XML dependency -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
@@ -114,6 +115,7 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
+
 
 		<!-- For Aspect Oriented programing need this -->
 		<dependency>
@@ -158,6 +160,7 @@
 			<artifactId>spring-messaging</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
+
 		<!-- Websocket Security dependency -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -186,20 +189,6 @@
 			<artifactId>timeago</artifactId>
 			<version>3.0.2</version>
 		</dependency>
-		
-		<!-- For Aspect Oriented programing need this -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${springframework.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.8.14</version>
-		</dependency>
-		
-
 	</dependencies>
 	<build>
 		<finalName>krishichat</finalName>

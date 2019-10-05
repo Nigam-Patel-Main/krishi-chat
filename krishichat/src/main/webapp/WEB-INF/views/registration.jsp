@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-lable">Password:</label>
 						<div class="col-lg-9">
-							<form:password path="password" class="form-control"
+							<form:password path="password" pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}" title="Must contain at least one number and one letter, and at least 8 or more characters" class="form-control"
 								required="true" />
 							<form:errors path="password" cssClass="text-danger"></form:errors>
 						</div>

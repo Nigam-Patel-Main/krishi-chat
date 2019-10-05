@@ -18,6 +18,12 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<param-name>minuteToExpireTokenForForgotPassword</param-name>
 		<param-value>10</param-value>
 	</context-param>
+	<listener>
+	  <listener-class>
+	       org.springframework.security.web.session.HttpSessionEventPublisher
+	  </listener-class>
+	</listener>
+	<!-- Spring Security -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -26,20 +32,10 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<listener>
-	  <listener-class>
-	       org.springframework.security.web.session.HttpSessionEventPublisher
-	  </listener-class>
-	</listener>
 	<session-config>
 		<session-timeout>15</session-timeout>
 		<cookie-config>
 			<max-age>86400</max-age>
 		</cookie-config>	
 	</session-config>
-	
-	
-	
-	
 </web-app>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
+<link href="${css}/jquery-ui.css" rel="stylesheet">
 
 <div class="container ">
 	<div class="row my-2 py-5"
@@ -31,10 +32,10 @@
 		</div>
 		<div class="col-lg-8 order-lg-2">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a href="" data-target="#profile"
-					data-toggle="tab" class="nav-link active">Profile</a></li>
-				<li class="nav-item"><a href="" data-target="#edit"
-					data-toggle="tab" class="nav-link">Edit</a></li>
+				<li class="nav-item"><a  data-target="#profile"
+					data-toggle="tab" class="nav-link active pointer">Profile</a></li>
+				<li class="nav-item"><a  data-target="#edit"
+					data-toggle="tab" class="nav-link pointer">Edit</a></li>
 			</ul>
 			<div class="tab-content py-4">
 				<div class="tab-pane active" id="profile">
@@ -174,6 +175,16 @@
 
 	</div>
 </div>
-
-
 <jsp:include page="footer.jsp"></jsp:include>
+<script  src="${js}/compressor.js" type="text/javascript"></script>
+<script  src="${js}/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+//date picker for registration form birthdate field
+	$('#idBirthdateField').datepicker({
+		changeMonth : true,
+		changeYear : true,
+		dateFormat : 'dd/mm/yy',
+		yearRange: "-100:+0",
+		maxDate: new Date()
+	});
+</script>

@@ -33,7 +33,7 @@ public class DatabaseInserterListner implements ApplicationListener<ContextRefre
 			User user = new User();
 			user.setName("Nigam Admin");
 			user.setEmail("nigampatel44@gmail.com");
-			user.setPassword("nigamnigam");
+			user.setPassword("nigampatel44@gmail.com");
 			user.setEnabled(true);
 
 			Roles role1 = new Roles();

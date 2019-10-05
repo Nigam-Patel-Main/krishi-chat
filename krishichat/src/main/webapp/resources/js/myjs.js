@@ -1,11 +1,33 @@
-
-	
-	
-
 $(function() {
-
+	// navbar activr tag
+	var parts = document.location.href.split('/');
+	var lastSegment1 = parts.pop() || parts.pop();
 	
-	//new chat board js script	
+	
+	console.log("document.location.hostname : "+lastSegment1);
+	
+	var links = [];
+	$('a').each(function() {
+		var parts = this.href.split('/');
+		var lastSegment2 = parts.pop() || parts.pop();	
+		
+	   links.push( lastSegment2); 
+	   // According to comment
+	   // if you need each link separately then
+	   // may try like
+
+	   var href = this.href;
+	   if(lastSegment1==lastSegment2)
+	   {
+		   $(this).addClass("activemenu");
+		   $(this).parent().siblings("a").addClass("activemenu");
+	   }
+	   // now process with the href as you wish
+	});
+	console.log(links);
+	
+	
+	// new chat board js script
 	$(".sizeBar").click(function(){
 		$("#sidebar-content")
         .removeClass("w-100")
@@ -36,20 +58,10 @@ $(function() {
 						.html(fileName);
 			});
 
-	// date picker for registration form birthdate field
-	$('#idBirthdateField').datepicker({
-		changeMonth : true,
-		changeYear : true,
-		dateFormat : 'dd/mm/yy',
-		yearRange: "-100:+0",
-		maxDate: new Date()
-	});
-	
 	// Set footer bottom
 	function setFooter() {
 		var windowh = $(window).outerHeight(true);
 
-		// alert(windowh);
 		var contenth = $("#main").outerHeight(true);
 
 		var headerh = $("#header").outerHeight(true);
@@ -145,7 +157,7 @@ $(".seeProfileButton").click(function(){
 });
 
 
-//update profile image on browser not server
+// update profile image on browser not server
 $("#profileImageFileInput").change(function(){
 		var ext = $(this).val().split('.').pop().toLowerCase();
 		if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
@@ -166,12 +178,12 @@ $("#profileImageFileInput").change(function(){
 	  
 });
 
-//update profile image on server
+// update profile image on server
 $("#updateProfileImage").click(function(){
 	const files =$('#profileImageFileInput').prop('files'); 
 	const reader = new FileReader();
     new Compressor(files[0], {
- 	    quality: 0.1,
+ 	    quality: 0.4,
  	    success(result) {
  	    	reader.readAsDataURL(result);
  	    },

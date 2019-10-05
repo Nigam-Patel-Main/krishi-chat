@@ -32,6 +32,8 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("user is logged with email :" + username);
+
 		User user = findByEmail(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found");
@@ -88,8 +90,9 @@ public class UserService implements UserDetailsService {
 	public String getIdByEmail(String email) {
 		return userDAO.getIdByEmail(email);
 	}
+
 	public String getEmailById(String Id) {
-		return userDAO.getEmailById(Id);	
+		return userDAO.getEmailById(Id);
 	}
 
 	public void updateUser(User user) {

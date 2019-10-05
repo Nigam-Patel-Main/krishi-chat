@@ -433,4 +433,6 @@
 		</div>
 	</div>
 </div>
+
+<script  src="${js}/compressor.js" type="text/javascript"></script>
 <jsp:include page="footer.jsp"></jsp:include>

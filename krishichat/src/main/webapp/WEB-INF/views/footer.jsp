@@ -1,8 +1,8 @@
 </div>
 </div>
 <div id="footer" style="display:none">
-	<footer class="mb-0 py-4  bg-light"
-		style="box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);">
+	<footer class="mb-0 py-4 "
+		style="box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);background-color:#FFFFFF !important">
 		<div class="container text-center">
 			<small style="color:black">Copyright &copy; Nigam Patel, Agricultural Information Technology,
 				AAU Anand</small>
@@ -23,16 +23,11 @@
 <script  src="${js}/jquery.min.js" type="text/javascript"></script>
 <script  src="${js}/popper.min.js" type="text/javascript"></script>
 <script  src="${js}/bootstrap.min.js" type="text/javascript"></script>
-<script  src="${js}/jquery-ui.js" type="text/javascript"></script>
 <script  src="${js}/jquery.toast.min.js" type="text/javascript"></script>
-<script src="${js}/typed.min.js" type="text/javascript"></script>
 <script  src="${js}/moment.min.js" type="text/javascript"></script>
 <script  src="${js}/moment-timezone-with-data.js" type="text/javascript"></script>
 <script  src="${js}/stomp.js" type="text/javascript"> </script>
 <script  src="${js}/sockjs.js" type="text/javascript"></script>
-<script  src="${js}/compressor.js" type="text/javascript"></script>
-
-
 
 <!-- Template Main Javascript File -->
 <script  src="${js}/myjs.js" type="text/javascript"></script>

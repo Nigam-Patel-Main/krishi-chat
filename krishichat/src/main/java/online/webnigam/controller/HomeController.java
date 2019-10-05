@@ -66,12 +66,9 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
-	
-	
 
 	@RequestMapping("/login")
 	public String showLogin() {
-
 		return "login";
 	}
 
@@ -95,7 +92,7 @@ public class HomeController {
 		// add User
 		userService.add(user);
 //		 Comment if you want enable auto login
-//		userService.approveUser(user);
+		userService.approveUser(user);
 
 		// Set user role
 		Roles roles = new Roles();

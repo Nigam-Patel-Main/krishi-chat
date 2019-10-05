@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import online.webnigam.dto.ActiveUserStore;
 import online.webnigam.dto.ApplicationUserDTO;
-import online.webnigam.dto.ChatPeopleDTO;
 import online.webnigam.dto.HomeDTO;
 import online.webnigam.dto.LoadMessagesDTO;
 import online.webnigam.dto.MessageDTO;

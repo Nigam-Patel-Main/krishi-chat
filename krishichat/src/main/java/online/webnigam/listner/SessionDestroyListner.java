@@ -11,6 +11,7 @@ import org.springframework.security.web.session.HttpSessionDestroyedEvent;
 import org.springframework.stereotype.Component;
 
 import online.webnigam.dto.ActiveUserStore;
+import online.webnigam.service.AuthenticationLogService;
 import online.webnigam.service.ChatService;
 import online.webnigam.service.UserService;
 
@@ -24,6 +25,9 @@ public class SessionDestroyListner {
 	@Autowired
 	ChatService chatService;
 
+	@Autowired
+	AuthenticationLogService authenticationLogService;
+
 	@EventListener
 	public void sessionCreatelistner(HttpSessionCreatedEvent event) {
 	}
@@ -35,6 +39,11 @@ public class SessionDestroyListner {
 		if (loggedUser != null) {
 			userService.updateTime(loggedUser.getEmail());
 			activeUserStore.getUsers().remove(loggedUser.getEmail());
+
+			// user log
+			authenticationLogService.changeLogoutTime(userService.findByEmail(loggedUser.getEmail()));
+			System.out.println("logout log successfull");
+
 			chatService.sendToAllFriendOflineMessage(loggedUser.getEmail());
 		}
 	}

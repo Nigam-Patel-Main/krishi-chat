@@ -21,7 +21,7 @@
   </div>
   <div class="icon-bar">
   <a href="https://www.facebook.com/nigam.patel.779642" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a> 
-  <a href="https://www.linkedin.com/in/nigam-patel-1112b1169" class="linkedin"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.linkedin.com/in/nigam-patel-1112b1169" target="_blank" class="linkedin"><i class="fab fa-linkedin"></i></a>
   
 </div>
 <script src="${js}/typed.min.js" type="text/javascript"></script>  

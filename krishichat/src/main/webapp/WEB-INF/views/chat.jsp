@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -36,7 +36,7 @@
 					</div>
 					<div class="w-100 sidebar-scroll" id="list-group">
 						<ul class="list-group h-100 w-100" id="friend-list">
-							<c:if test="${fn:length(users) lt 1}">
+							<c:if test="${ fn:length(users) lt 1}">
 								<li class="p-3">
 									<div
 										class="alert alert-danger alert-dismissible fade show box-shadow "

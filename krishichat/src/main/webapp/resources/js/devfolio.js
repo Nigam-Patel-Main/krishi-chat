@@ -9,11 +9,6 @@
       $('.back-to-top').fadeOut('slow');
     }
   });
-  $('.back-to-top').click(function(){
-    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
-    return false;
-  });
-
 	/*--/ Star ScrollTop /--*/
 	$('.scrolltop-mf').on("click", function () {
 		$('html, body').animate({
@@ -36,7 +31,7 @@
 	  // Preloader
 	  $(window).on('load', function () {
 	    if ($('#preloader').length) {
-	      $('#preloader').delay(1).fadeOut('slow', function () {
+	      $('#preloader').delay(0).fadeOut('slow', function () {
 	        $(this).remove();
 	      });
 	    }

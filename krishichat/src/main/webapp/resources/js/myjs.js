@@ -4,7 +4,7 @@ $(function() {
 	var lastSegment1 = parts.pop() || parts.pop();
 	
 	
-	console.log("document.location.hostname : "+lastSegment1);
+//	console.log("document.location.hostname : "+lastSegment1);
 	
 	var links = [];
 	$('a').each(function() {
@@ -24,7 +24,7 @@ $(function() {
 	   }
 	   // now process with the href as you wish
 	});
-	console.log(links);
+	
 	
 	
 	// new chat board js script
@@ -175,6 +175,8 @@ $("#profileImageFileInput").change(function(){
 	    
 	    $("#profileImage").attr("src",tmppath);
 	    $("#updateProfileImage").show("slow");
+	    
+	    
 	  
 });
 

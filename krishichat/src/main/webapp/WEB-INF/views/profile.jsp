@@ -13,8 +13,9 @@
 				class="mx-auto rounded-circle d-block"
 				style="width: 200px; height: 200px;" id="profileImage" alt="avatar">
 
-			<div class="form-group row">
-				<div class="col-lg-6 text-right">
+			<div class="form-group row m-2 text-center" >
+				<div class="col-lg-2 "></div>
+				<div class="col-lg-8 ">
 					<div class="file btn  rounded-0 btn-light border"
 						style="position: relative; overflow: hidden;">
 						<span class="">Choose profile. <i class="fas fa-folder-open"></i></span> <input
@@ -22,12 +23,15 @@
 							style="position: absolute; font-size: 50px; opacity: 0; right: 0; top: 0;" />
 					</div>
 				</div>
-				<div class="col-lg-6 text-left">
+			</div>
+			<div class="row m-2">
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6">
 					<button type="submit" class="btn btn-primary"
 						id="updateProfileImage" style="display: none">Update</button>
-				</div>
+				</div>		
 			</div>
-
+			
 
 		</div>
 		<div class="col-lg-8 order-lg-2">

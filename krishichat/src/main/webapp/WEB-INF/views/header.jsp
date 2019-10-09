@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <spring:url value="resources/css" var="css" scope="session"></spring:url>
 <spring:url value="resources/images" var="image" scope="session"></spring:url>
@@ -75,16 +77,16 @@
 					<input type="hidden" id="hiddenTextBoxUserId" name=""
 						value="${user.id}">
 
-					<ul class="navbar-nav mr-auto">
+					<ul class="navbar-nav">
 
 
 						<li class="nav-item"><a class="nav-link"
 							href="${contextPath}/chat"> <i
-								class="far fa-comment-dots fa-lg py-1"></i><sup><span
+								class="far fa-comment-dots  py-1"></i><sup><span
 									class="nav-link badge badge-warning px-2" style="display: none"
 									id="totalCountMessages">0</span></sup>
 						</a></li>
-						<li class="nav-item"></li>
+
 						<li class="nav-item dropdown "><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
 								<i class="fas fa-user-friends  fa -lg py-1"></i>
@@ -101,6 +103,12 @@
 									class="fas fa-list px-2"></i>
 								</a>
 							</div></li>
+						<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="hasAuthority('ADMIN') ">
+								<li class="nav-item"><a class="nav-link"
+									href="${contextPath}/log"><i class="fas fa-history   py-1"></i></a></li>
+							</sec:authorize>
+						</sec:authorize>
 					</ul>
 					<ul class="navbar-nav ml-auto .dropdown-menu-right">
 
@@ -157,16 +165,17 @@
 				</div>
 
 			</c:if>
+
 			<c:if test="${error!=null}">
 				<div class="row ">
 					<div class=" col-lg-8 mx-auto mt-3">
 						<div
 							class="alert alert-danger alert-dismissible fade show box-shadow"
 							role="alert">
-							<strong>Error : </strong> ${error}
+							<strong>Error :</strong> ${error}
 							<button type="button" class="close" data-dismiss="alert"
 								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+								<span aria-hidden="true"> &times; </span>
 							</button>
 						</div>
 					</div>

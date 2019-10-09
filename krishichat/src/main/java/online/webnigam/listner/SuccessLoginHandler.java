@@ -14,7 +14,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import online.webnigam.dto.ActiveUserStore;
+import online.webnigam.entity.AuthenticationLog;
 import online.webnigam.entity.User;
+import online.webnigam.service.AuthenticationLogService;
 import online.webnigam.service.ChatService;
 import online.webnigam.service.UserService;
 
@@ -28,6 +30,9 @@ public class SuccessLoginHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
 	ChatService chatService;
+
+	@Autowired
+	AuthenticationLogService authenticationLogService;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -43,6 +48,14 @@ public class SuccessLoginHandler implements AuthenticationSuccessHandler {
 				loggedUser = new LoggedUser(authentication.getName(), activeUserStore);
 				session.setAttribute("loggedUser", loggedUser);
 				session.setAttribute("userSession", user);
+
+				// user log
+				AuthenticationLog authenticationLog = authenticationLogService.buildPOJOObject();
+				authenticationLog.setUser(user);
+				authenticationLogService.add(authenticationLog);
+				System.out.println("login log successfull");
+
+				// redirect to home page
 				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
 				request.setAttribute("message", "You are allready logged in..");

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import online.webnigam.dao.UserDAO;
+import online.webnigam.dto.blockAndUnblockUserDTO;
 import online.webnigam.entity.Roles;
 import online.webnigam.entity.User;
 
@@ -45,7 +46,7 @@ public class UserService implements UserDetailsService {
 
 	public org.springframework.security.core.userdetails.User getGrantedUser(User user) {
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-				user.getEnabled(), true, true, true, getUserAuthority(user.getRoles()));
+				user.getEnabled(), true, true, !user.getIsBlock(), getUserAuthority(user.getRoles()));
 	}
 
 	// create collection of granted authority
@@ -114,6 +115,19 @@ public class UserService implements UserDetailsService {
 
 	public String getNameByEmail(String fromEmail) {
 		return userDAO.getNameByEmail(fromEmail);
+	}
+
+	public List<blockAndUnblockUserDTO> list(String email) {
+
+		return userDAO.list(email);
+	}
+
+	public void blockUser(String id) {
+		userDAO.blockUser(id);
+	}
+
+	public void unblockUser(String id) {
+		userDAO.unblockUser(id);
 	}
 
 }

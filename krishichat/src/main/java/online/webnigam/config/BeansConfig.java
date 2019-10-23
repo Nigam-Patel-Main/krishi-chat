@@ -9,7 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -47,8 +46,6 @@ public class BeansConfig implements WebMvcConfigurer {
 		resolver.setMaxInMemorySize(10485760);
 		return resolver;
 	}
-	
-	
 
 	@Bean
 	public JavaMailSender getJavaMailSender() {

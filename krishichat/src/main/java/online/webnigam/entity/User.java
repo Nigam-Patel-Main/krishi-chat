@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class User {
 	@Id
 	@GenericGenerator(name = "sequence_user_id", strategy = "online.webnigam.service.CustomUserIdGenrator")
 	@GeneratedValue(generator = "sequence_user_id")
-	@Size(max = 100)
+	@Column(length = 20)
 	private String id;
 
 	@Size(min = 2, max = 50, message = "Name length should between 2-50 charecter")
@@ -52,14 +53,14 @@ public class User {
 	@Size(min = 2, max = 100, message = "Status length should between 2-100 charecter")
 	private String status;
 
-	@Size(min = 10, max = 255, message = "Address length should between 10-255 charecter")
+	@Size(min = 10, max = 150, message = "Address length should between 10-255 charecter")
 	private String address;
 
 	@JsonIgnore
 	@Transient
 	MultipartFile file;
 
-	@Size(min = 2, max = 100, message = "Image Path length should between 2-100 charecter")
+	@Column(length = 200, name = "profile_image_path")
 	private String profileImagePath = "defaultProfile.png";
 
 	@NaturalId
@@ -75,16 +76,19 @@ public class User {
 	private boolean enabled;
 
 	@JsonIgnore
+	@Column(name = "is_block")
 	private boolean isBlock;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "active_time")
 	private Date activeTime = new Date();
 
 	@JsonIgnore
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
 	private Date createdAt = new Date();
 
 	@JsonIgnore
@@ -110,7 +114,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "groupId")
 	private List<GroupMember> groupMembers = new ArrayList<>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notification = new ArrayList<>();

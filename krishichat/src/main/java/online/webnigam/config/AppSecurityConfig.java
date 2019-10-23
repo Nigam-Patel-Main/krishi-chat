@@ -33,7 +33,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().exceptionHandling().accessDeniedPage("/home").and().authorizeRequests()
-				.antMatchers("/home", "/registration", "/logout", "/login", "/", "/**", "/resources/**").permitAll()
+				.antMatchers("/loginlogic", "/home", "/registration", "/logout", "/login", "/", "/**", "/resources/**")
+				.permitAll()
 				.antMatchers("/showProfile", "/updateProfileImage", "/getUserProfile", "/handleEditProfile",
 						"/discoverUser", "/friendPendingRequest", "/friendRequest", "friendList")
 				.hasRole("USER").anyRequest().authenticated().and().formLogin().usernameParameter("email")

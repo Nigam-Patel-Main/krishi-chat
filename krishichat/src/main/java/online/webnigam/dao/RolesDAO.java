@@ -36,6 +36,7 @@ public class RolesDAO {
 		return entityManager.find(Roles.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public List<Roles> list() {
 		return (List<Roles>) entityManager.createQuery("From Roles").getResultList();

@@ -1,6 +1,5 @@
 package online.webnigam.service;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -95,16 +94,17 @@ public class GroupMemberService {
 		User user = userService.buildUserFromId(gGroupDTO.getStatus());
 
 		memberDAO.deleteGroupMember(group, user);
-		//friends as a member email
-		chatService.addNotification("",gGroupDTO.getFriends() , " removed  you from " + group.getName() + " Group",
+		// friends as a member email
+		chatService.addNotification("", gGroupDTO.getFriends(), " removed  you from " + group.getName() + " Group",
 				Notification.MEMBEROFGROUP, gGroupDTO.getLeaderId());
 	}
 
 	public GGroup getGroupInfo(String groupId) {
-		GGroup group=memberDAO.getGroupInfo(groupId);
+		GGroup group = memberDAO.getGroupInfo(groupId);
 		return group;
 	}
-	public List<String> getGroupMemberIds(GGroup group,User user) {
+
+	public List<String> getGroupMemberIds(GGroup group, User user) {
 		return memberDAO.getGroupMemberIds(group, user);
 	}
 
@@ -116,6 +116,6 @@ public class GroupMemberService {
 		GGroup group = new GGroup();
 		group.setId(groupId);
 		return memberDAO.getGroupMember(group);
-		
+
 	}
 }

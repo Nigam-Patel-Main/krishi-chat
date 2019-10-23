@@ -3,10 +3,8 @@ package online.webnigam.exception;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice
 public class GenralErrorHandling {
 	@ExceptionHandler(value = Exception.class)
 	public String errorFired(HttpServletRequest request, Exception ex, Model model) {

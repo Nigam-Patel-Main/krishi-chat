@@ -31,18 +31,17 @@ public class VerificationTokenService {
 		String message = "";
 		String subject = "";
 
-		// Specifiy messsage according to purpose
 		if (purpose == VerificationToken.EMAILVERIFICATION) {
 			message = "click to verify your email... " + servletContext.getInitParameter("domainName")
 					+ "/confirmRegistration?token=" + random;
-			subject = "Email Verification from KRISHI CHAT";
+			subject = "Email Verification from CHATTER PAD APPLICATION";
 		}
 
 		if (purpose == VerificationToken.FORGOTPASSWORD) {
 			message = "click to forgot your password... " + servletContext.getInitParameter("domainName")
 					+ "/showForgotPassword?token=" + random;
 
-			subject = "Forgot Password from KRISHI CHAT";
+			subject = "Forgot Password from CHATTER PAD APPLICATION";
 		}
 
 		// Add record to database

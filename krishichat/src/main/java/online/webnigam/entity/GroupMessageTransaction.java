@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="groupmessagetransaction")
+@Table(name = "groupmessagetransaction")
 public class GroupMessageTransaction {
 
 	@Id
@@ -28,11 +29,11 @@ public class GroupMessageTransaction {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "groupId")
+	@JoinColumn(name = "group_id")
 	private GGroup groupId;
 
 	@ManyToOne
-	@JoinColumn(name = "fromId")
+	@JoinColumn(name = "from_id")
 	private User fromId;
 
 	@ManyToOne
@@ -40,8 +41,9 @@ public class GroupMessageTransaction {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date createdAt =new Date();
-	
+	@Column(name = "created_at")
+	private Date createdAt = new Date();
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "fromId")
 	private List<GroupMessageTransaction> groupMessageTransactions = new ArrayList<>();
@@ -53,8 +55,6 @@ public class GroupMessageTransaction {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
 
 	public GGroup getGroupId() {
 		return groupId;
@@ -95,7 +95,5 @@ public class GroupMessageTransaction {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-
-	
 
 }

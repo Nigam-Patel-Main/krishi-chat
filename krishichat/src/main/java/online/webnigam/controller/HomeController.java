@@ -1,6 +1,7 @@
 package online.webnigam.controller;
 
 import java.text.ParseException;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,15 +15,19 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.social.google.api.plus.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import online.webnigam.dto.ActiveUserStore;
 import online.webnigam.entity.Roles;
@@ -30,6 +35,7 @@ import online.webnigam.entity.User;
 import online.webnigam.entity.VerificationToken;
 import online.webnigam.event.EmailConfirmationEvent;
 import online.webnigam.listner.LoggedUser;
+import online.webnigam.service.AuthenticationService;
 import online.webnigam.service.ChatService;
 import online.webnigam.service.RolesService;
 import online.webnigam.service.UserService;
@@ -51,6 +57,9 @@ public class HomeController {
 	AuthenticationManager authenticationManager;
 
 	@Autowired
+	AuthenticationService authService;
+
+	@Autowired
 	ActiveUserStore activeUserStore;
 
 	@Autowired
@@ -70,6 +79,67 @@ public class HomeController {
 	@RequestMapping("/login")
 	public String showLogin() {
 		return "login";
+	}
+
+	@RequestMapping("/googlelogin")
+	public RedirectView showGoogleLogin() {
+		RedirectView view = new RedirectView();
+		String url = authService.genrateUrl();
+		view.setUrl(url);
+		return view;
+	}
+
+	@GetMapping("/loginlogic")
+	public String afterLogin(@RequestParam("code") String code) {
+		String authToken = authService.getAuthenticationToken(code);
+		return "redirect:/showHome/" + authToken;
+	}
+
+	@GetMapping("/showHome/{authToken:.+}")
+	public String showUser(@PathVariable("authToken") String authToken, HttpServletRequest request) {
+		System.out.println("Token length is : " + authToken.length());
+		Person person = authService.fetchUserFromGoogle(authToken);
+		System.out.println("Person Name is : " + person.getGivenName());
+		// Modify Name in Title Case
+		String name = person.getGivenName() + " " + person.getFamilyName();
+		name = Stream.of(name.split(" ")).map(w -> w.toUpperCase().charAt(0) + w.toLowerCase().substring(1))
+				.reduce((s, s2) -> s + " " + s2).orElse("");
+
+		// check if person is there
+		User user = userService.findByEmail(person.getAccountEmail());
+		if (user == null) {
+			User googleUser = new User();
+			googleUser.setName(name);
+			googleUser.setBirthdate(person.getBirthday());
+			googleUser.setEmail(person.getAccountEmail());
+			googleUser.setProfileImagePath(person.getImageUrl());
+			googleUser.setPassword("hjjkfkjdghkjgnjvkgdummy");
+			googleUser.setEnabled(true);
+
+			userService.add(googleUser);
+
+			Roles roles = new Roles();
+			roles.setRole("USER");
+			roles.setUser(user);
+			rolesService.add(roles);
+
+			autoLogin(request, googleUser);
+		} else {
+
+			if (user.getBirthdate() == null) {
+				user.setBirthdate(person.getBirthday());
+			}
+			if (user.getProfileImagePath().trim().equals("defaultProfile.png")) {
+				user.setProfileImagePath(person.getImageUrl());
+			}
+			if (user.getGender() == null) {
+				user.setAddress(person.getGender());
+			}
+			userService.updateUser(user);
+			autoLogin(request, user);
+		}
+
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/registration")

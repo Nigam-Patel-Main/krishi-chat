@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
@@ -21,7 +22,7 @@
 <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff"
 	http-equiv="Content-Type" />
 
-<title>KRISHI CHAT</title>
+<title>CHATTER PAD</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
@@ -107,6 +108,9 @@
 							<sec:authorize access="hasAuthority('ADMIN') ">
 								<li class="nav-item"><a class="nav-link"
 									href="${contextPath}/log"><i class="fas fa-history   py-1"></i></a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="${contextPath}/showUsers"><i
+										class="fas fa-user-lock py-1"></i></a></li>
 							</sec:authorize>
 						</sec:authorize>
 					</ul>
@@ -122,9 +126,18 @@
 							data-display="dynamic"><a
 							class="nav-link dropdown-toggle navbar-brand" href="#"
 							id="navbarDropdown" role="button" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> <img
-								src="${profileImage}/${userSession.profileImagePath}"
+							aria-haspopup="true" aria-expanded="false">
+							<c:choose>
+									<c:when test="${fn:startsWith(userSession.profileImagePath, 'http')}">
+								       <img src="${userSession.profileImagePath}"
+								class="rounded" width="30" height="30" id="navbarProfileImage">	
+								    </c:when>
+									<c:otherwise>
+										<img src="${profileImage}/${userSession.profileImagePath}"
 								class="rounded" width="30" height="30" id="navbarProfileImage">
+									</c:otherwise>
+							</c:choose>
+							 
 						</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								<a class="dropdown-item " href="${contextPath}/showProfile"

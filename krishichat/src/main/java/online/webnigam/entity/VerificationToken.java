@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="verificationtoken")
+@Table(name = "verificationtoken")
 public class VerificationToken {
 
 	public static final String FORGOTPASSWORD = "FORGOTPASSWORD";
@@ -30,12 +31,15 @@ public class VerificationToken {
 	private String token;
 
 	@OneToOne(fetch = FetchType.EAGER)
+	@Size(max = 20)
 	private User user;
 
+	@Column(length = 30)
 	private String purpose;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "expiry_date")
 	private Date expiryDate;
 
 	public int getId() {

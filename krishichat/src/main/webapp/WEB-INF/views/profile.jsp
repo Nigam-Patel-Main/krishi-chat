@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="header.jsp"></jsp:include>
 <link href="${css}/jquery-ui.css" rel="stylesheet">
 
@@ -9,17 +11,29 @@
 	<div class="row my-2 py-5"
 		style="box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);">
 		<div class="col-lg-4  text-center">
-			<img src="${profileImage}/${user.profileImagePath}"
-				class="mx-auto rounded-circle d-block"
-				style="width: 200px; height: 200px;" id="profileImage" alt="avatar">
-
-			<div class="form-group row m-2 text-center" >
+			<c:choose>
+				<c:when
+					test="${fn:startsWith(user.profileImagePath, 'http')}">
+					<img src="${user.profileImagePath}"
+						class="mx-auto rounded-circle d-block"
+						style="width: 200px; height: 200px;" id="profileImage"
+						alt="avatar">
+				</c:when>
+				<c:otherwise>
+					<img src="${profileImage}/${user.profileImagePath}"
+						class="mx-auto rounded-circle d-block"
+						style="width: 200px; height: 200px;" id="profileImage"
+						alt="avatar">
+				</c:otherwise>
+			</c:choose>
+			<div class="form-group row m-2 text-center">
 				<div class="col-lg-2 "></div>
 				<div class="col-lg-8 ">
 					<div class="file btn  rounded-0 btn-light border"
 						style="position: relative; overflow: hidden;">
-						<span class="">Choose profile. <i class="fas fa-folder-open"></i></span> <input
-							type="file" id="profileImageFileInput" name="file"
+						<span class="">Choose profile. <i
+							class="fas fa-folder-open"></i></span> <input type="file"
+							id="profileImageFileInput" name="file"
 							style="position: absolute; font-size: 50px; opacity: 0; right: 0; top: 0;" />
 					</div>
 				</div>
@@ -29,17 +43,17 @@
 				<div class="col-lg-6">
 					<button type="submit" class="btn btn-primary"
 						id="updateProfileImage" style="display: none">Update</button>
-				</div>		
+				</div>
 			</div>
-			
+
 
 		</div>
 		<div class="col-lg-8 order-lg-2">
 			<ul class="nav nav-tabs">
-				<li class="nav-item"><a  data-target="#profile"
+				<li class="nav-item"><a data-target="#profile"
 					data-toggle="tab" class="nav-link active pointer">Profile</a></li>
-				<li class="nav-item"><a  data-target="#edit"
-					data-toggle="tab" class="nav-link pointer">Edit</a></li>
+				<li class="nav-item"><a data-target="#edit" data-toggle="tab"
+					class="nav-link pointer">Edit</a></li>
 			</ul>
 			<div class="tab-content py-4">
 				<div class="tab-pane active" id="profile">
@@ -180,15 +194,15 @@
 	</div>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
-<script  src="${js}/compressor.js" type="text/javascript"></script>
-<script  src="${js}/jquery-ui.min.js" type="text/javascript"></script>
+<script src="${js}/compressor.js" type="text/javascript"></script>
+<script src="${js}/jquery-ui.min.js" type="text/javascript"></script>
 <script>
-//date picker for registration form birthdate field
+	//date picker for registration form birthdate field
 	$('#idBirthdateField').datepicker({
 		changeMonth : true,
 		changeYear : true,
 		dateFormat : 'dd/mm/yy',
-		yearRange: "-100:+0",
-		maxDate: new Date()
+		yearRange : "-100:+0",
+		maxDate : new Date()
 	});
 </script>

@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,18 +18,18 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="groupmember")
+@Table(name = "groupmember")
 public class GroupMember {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "groupId")
+	@JoinColumn(name = "group_Id")
 	private GGroup groupId;
 
 	@ManyToOne
-	@JoinColumn(name = "toId")
+	@JoinColumn(name = "to_id")
 	private User toId;
 
 	private boolean enable;
@@ -36,9 +37,11 @@ public class GroupMember {
 	@JsonIgnore
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
 	private Date createdAt = new Date();
 
-	private boolean isLeader=false;
+	@Column(name = "is_leader")
+	private boolean isLeader = false;
 
 	public boolean getIsLeader() {
 		return isLeader;
@@ -56,8 +59,6 @@ public class GroupMember {
 		this.id = id;
 	}
 
-	
-
 	public GGroup getGroupId() {
 		return groupId;
 	}
@@ -65,8 +66,6 @@ public class GroupMember {
 	public void setGroupId(GGroup groupId) {
 		this.groupId = groupId;
 	}
-
-
 
 	public User getToId() {
 		return toId;

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import online.webnigam.dto.blockAndUnblockUserDTO;
 import online.webnigam.entity.User;
 
 @Repository
@@ -54,6 +55,7 @@ public class UserDAO {
 		return (String) entityManager.createQuery("select id from User where email=:email").setParameter("email", email)
 				.getSingleResult();
 	}
+
 	public String getEmailById(String Id) {
 		return (String) entityManager.createQuery("select email from User where id=:id").setParameter("id", Id)
 				.getSingleResult();
@@ -61,11 +63,10 @@ public class UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<User> list(int page) {
-
-		int firstResult = ((page - 1) * 20) + 1;
-		return (List<User>) entityManager.createQuery("From User").setFirstResult(firstResult).setMaxResults(20)
-				.getResultList();
+	public List<blockAndUnblockUserDTO> list(String email) {
+		return (List<blockAndUnblockUserDTO>) entityManager.createQuery(
+				"select new online.webnigam.dto.blockAndUnblockUserDTO(u.id,u.name,u.email,u.isBlock) From User u where u.email !=:email")
+				.setParameter("email", email).getResultList();
 
 	}
 
@@ -92,6 +93,16 @@ public class UserDAO {
 	public String getNameByEmail(String fromEmail) {
 		return (String) entityManager.createQuery("select name from User where email=:email")
 				.setParameter("email", fromEmail).getSingleResult();
+	}
+
+	@Transactional
+	public void blockUser(String id) {
+		entityManager.createQuery("update User set isBlock=true where id=:id").setParameter("id", id).executeUpdate();
+	}
+
+	@Transactional
+	public void unblockUser(String id) {
+		entityManager.createQuery("update User set isBlock=false where id=:id").setParameter("id", id).executeUpdate();
 	}
 
 }

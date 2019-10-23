@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,14 +23,16 @@ public class FriendList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private
+
+	int id;
 
 	@ManyToOne
-	@JoinColumn(name = "fromId")
+	@JoinColumn(name = "from_id")
 	private User fromId;
 
 	@ManyToOne
-	@JoinColumn(name = "toId")
+	@JoinColumn(name = "to_id")
 	private User toId;
 
 	private boolean enable;
@@ -37,6 +40,7 @@ public class FriendList {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
 	private Date createdAt = new Date();
 
 	public int getId() {

@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,18 +24,20 @@ public class GroupMessageTransactionDetail {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "groupMessageTransactionId")
+	@JoinColumn(name = "groupmessagetransaction_id")
 	private GroupMessageTransaction groupMessageTransaction;
 
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	private User userId;
 
+	@Column(name = "is_readed")
 	private boolean isReaded;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date createdAt=new Date();
+	@Column(name = "created_at")
+	private Date createdAt = new Date();
 
 	public GroupMessageTransaction getGroupMessageTransaction() {
 		return groupMessageTransaction;

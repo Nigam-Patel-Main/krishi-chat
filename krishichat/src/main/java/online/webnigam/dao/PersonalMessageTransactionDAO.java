@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import online.webnigam.dto.LoadMessagesDTO;
-import online.webnigam.entity.Message;
 import online.webnigam.entity.PersonalMessageTransaction;
 import online.webnigam.entity.User;
 

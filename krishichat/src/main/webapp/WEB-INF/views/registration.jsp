@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="header.jsp"></jsp:include>
-
 <div class="row m-4">
 	<div class="col-lg-2"></div>
 	<div class="col-lg-8">
@@ -13,14 +12,14 @@
 			<div class="card-body">
 				<form:form action="${contextPath}/registration"
 					 modelAttribute="user"
-					class="form-horizontal" method="post">
+					class="form-horizontal" method="post" id="my-form">
 
 					<!-- Name  -->
 
 					<div class="form-group row">
 						<label class="col-lg-3 col-form-lable">Name:</label>
 						<div class="col-lg-9">
-							<form:input path="name"  required="true" class="form-control" />
+							<form:input path="name" pattern="[a-zA-Z0-9 ]+"  title="only letter and _ is allowed"  required="true" class="form-control" />
 							<form:errors path="name" cssClass="text-danger"></form:errors>
 						</div>
 					</div>

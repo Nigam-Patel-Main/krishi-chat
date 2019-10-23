@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,16 @@ public class AuthenticationLog {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "login_time")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date loginTime = new Date();;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "logout_time")
 	private Date logoutTime = new Date();;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
 	private Date createdAt = new Date();;
 
 	@ManyToOne

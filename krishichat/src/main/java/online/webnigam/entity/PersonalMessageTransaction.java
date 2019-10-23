@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="personalmessagetransaction")
+@Table(name = "personalmessagetransaction")
 public class PersonalMessageTransaction {
 
 	@Id
@@ -23,18 +24,23 @@ public class PersonalMessageTransaction {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "fromId")
+	@JoinColumn(name = "from_id")
 	private User fromId;
 
 	@ManyToOne
-	@JoinColumn(name = "toId")
+	@JoinColumn(name = "to_id")
 	private User toId;
 
 	@ManyToOne
 	private Message message;
-	
+
+	@Column(name = "is_readed")
 	private boolean isReaded = false;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
+	private Date createdAt = new Date();
 
 	public boolean isReaded() {
 		return isReaded;
@@ -43,10 +49,6 @@ public class PersonalMessageTransaction {
 	public void setReaded(boolean isReaded) {
 		this.isReaded = isReaded;
 	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date createdAt=new Date();
 
 	public int getId() {
 		return id;

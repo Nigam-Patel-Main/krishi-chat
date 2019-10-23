@@ -2,6 +2,7 @@ package online.webnigam.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,13 +25,13 @@ public class GGroup {
 	@Id
 	@GenericGenerator(name = "sequence_user_id", strategy = "online.webnigam.service.CustomGroupIdGenrator")
 	@GeneratedValue(generator = "sequence_user_id")
-	@Size(max = 20)
+	@Column(length = 20)
 	private String id;
 
 	@Size(min = 2, max = 50, message = "Name  length should between 2-50 charecter")
 	private String name;
 
-	@Size(min = 2, max = 100, message = "Image Path length should between 2-100 charecter")
+	@Column(length = 200, name = "profile_image_path")
 	private String profileImagePath = "defaultProfile.png";
 
 	@Size(min = 2, max = 100, message = "Status  length should between 2-100 charecter")
@@ -39,9 +40,8 @@ public class GGroup {
 	@JsonIgnore
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
 	private Date createdAt = new Date();
-	
-	
 
 	public void setId(String id) {
 		this.id = id;
@@ -50,9 +50,6 @@ public class GGroup {
 	public String getId() {
 		return id;
 	}
-	
-
-	
 
 	public String getName() {
 		return name;

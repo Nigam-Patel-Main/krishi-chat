@@ -6,7 +6,7 @@
 	<artifactId>krishichat</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>krishichat Maven Webapp</name>
+	<name>chatterpad Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<springframework.version>5.0.14.RELEASE</springframework.version>
@@ -195,9 +195,30 @@
 			<artifactId>timeago</artifactId>
 			<version>3.0.2</version>
 		</dependency>
+
+		<!-- Google Social login dependecy -->
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-core</artifactId>
+			<version>1.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-web</artifactId>
+			<version>1.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-config</artifactId>
+			<version>1.1.6.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-google</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>krishichat</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

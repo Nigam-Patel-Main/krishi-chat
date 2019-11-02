@@ -36,7 +36,7 @@ public class User {
 	@Id
 	@GenericGenerator(name = "sequence_user_id", strategy = "online.webnigam.service.CustomUserIdGenrator")
 	@GeneratedValue(generator = "sequence_user_id")
-	@Column(length = 20)
+	@Size(max = 100)
 	private String id;
 
 	@Size(min = 2, max = 50, message = "Name length should between 2-50 charecter")
@@ -53,14 +53,14 @@ public class User {
 	@Size(min = 2, max = 100, message = "Status length should between 2-100 charecter")
 	private String status;
 
-	@Size(min = 10, max = 150, message = "Address length should between 10-255 charecter")
+	@Size(min = 10, max = 255, message = "Address length should between 10-255 charecter")
 	private String address;
 
 	@JsonIgnore
 	@Transient
 	MultipartFile file;
 
-	@Column(length = 200, name = "profile_image_path")
+	@Column(name = "profile_image_path")
 	private String profileImagePath = "defaultProfile.png";
 
 	@NaturalId

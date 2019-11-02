@@ -3,7 +3,6 @@ package online.webnigam.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,13 +20,10 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(length = 2000)
 	private String message;
 
-	@Column(length = 200)
 	private String path;
 
-	@Column(length = 30)
 	private String type;
 
 	@OneToMany(mappedBy = "fromId")

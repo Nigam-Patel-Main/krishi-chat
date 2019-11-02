@@ -39,8 +39,8 @@ public class Notification {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	@JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a", timezone = "Asia/Kolkata")
 	@Column(name = "created_at")
+	@JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a", timezone = "Asia/Kolkata")
 	private Date createdAt = new Date();
 
 	@Column(name = "is_readed")

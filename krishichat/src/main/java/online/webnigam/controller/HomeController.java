@@ -1,6 +1,7 @@
 package online.webnigam.controller;
 
 import java.text.ParseException;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,48 +98,53 @@ public class HomeController {
 
 	@GetMapping("/showHome/{authToken:.+}")
 	public String showUser(@PathVariable("authToken") String authToken, HttpServletRequest request) {
-		System.out.println("Token length is : " + authToken.length());
+
 		Person person = authService.fetchUserFromGoogle(authToken);
-		System.out.println("Person Name is : " + person.getGivenName());
 		// Modify Name in Title Case
 		String name = person.getGivenName() + " " + person.getFamilyName();
 		name = Stream.of(name.split(" ")).map(w -> w.toUpperCase().charAt(0) + w.toLowerCase().substring(1))
 				.reduce((s, s2) -> s + " " + s2).orElse("");
+		Set<String> emailAddresses = person.getEmailAddresses();
+		if (emailAddresses.size() > 0) {
+			Object[] array = emailAddresses.toArray();
 
-		// check if person is there
-		User user = userService.findByEmail(person.getAccountEmail());
-		if (user == null) {
-			User googleUser = new User();
-			googleUser.setName(name);
-			googleUser.setBirthdate(person.getBirthday());
-			googleUser.setEmail(person.getAccountEmail());
-			googleUser.setProfileImagePath(person.getImageUrl());
-			googleUser.setPassword("hjjkfkjdghkjgnjvkgdummy");
-			googleUser.setEnabled(true);
+			User user = userService.findByEmail(array[0].toString());
 
-			userService.add(googleUser);
+			if (user == null) {
 
-			Roles roles = new Roles();
-			roles.setRole("USER");
-			roles.setUser(user);
-			rolesService.add(roles);
+				User googleUser = new User();
+				googleUser.setName(name);
+				googleUser.setBirthdate(person.getBirthday());
+				googleUser.setEmail(array[0].toString());
+				googleUser.setProfileImagePath(person.getImageUrl());
+				googleUser.setPassword("hjjkfkjdghkjgnjvkgdummy");
+				googleUser.setEnabled(true);
 
-			autoLogin(request, googleUser);
-		} else {
+				userService.add(googleUser);
 
-			if (user.getBirthdate() == null) {
-				user.setBirthdate(person.getBirthday());
+				Roles roles = new Roles();
+				roles.setRole("USER");
+				roles.setUser(user);
+				rolesService.add(roles);
+				autoLogin(request, googleUser);
+			} else {
+
+				if (user.getBirthdate() == null) {
+					user.setBirthdate(person.getBirthday());
+				}
+				if (user.getProfileImagePath().trim().equals("defaultProfile.png")) {
+					user.setProfileImagePath(person.getImageUrl());
+				}
+				if (user.getGender() == null) {
+					user.setAddress(person.getGender());
+				}
+				userService.updateUser(user);
+				autoLogin(request, user);
+
 			}
-			if (user.getProfileImagePath().trim().equals("defaultProfile.png")) {
-				user.setProfileImagePath(person.getImageUrl());
-			}
-			if (user.getGender() == null) {
-				user.setAddress(person.getGender());
-			}
-			userService.updateUser(user);
-			autoLogin(request, user);
+
 		}
-
+		// check if person is there
 		return "redirect:/home";
 	}
 
@@ -196,7 +202,9 @@ public class HomeController {
 
 	public boolean autoLogin(HttpServletRequest request, User user) {
 		try {
+
 			LoggedUser loggedUser = null;
+			System.out.println("Email is :" + user.getEmail());
 			UserDetails userDetails = userService.loadUserByUsername(user.getEmail());
 			UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails,
 					userDetails.getPassword(), userDetails.getAuthorities());

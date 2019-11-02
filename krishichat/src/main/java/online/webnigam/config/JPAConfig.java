@@ -42,7 +42,7 @@ public class JPAConfig {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/krishi_chat");
+		dataSource.setUrl("jdbc:mysql://localhost:3307/krishi_chat");
 
 //		dataSource.setUrl("jdbc:mysql://172.30.172.92:3306/krishi_chat");
 //

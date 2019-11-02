@@ -23,22 +23,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Override
 	public String genrateUrl() {
 		OAuth2Parameters parameters = new OAuth2Parameters();
-		parameters.setRedirectUri("http://localhost:8080/loginlogic");
-		parameters.setScope("profile email");
+		parameters.setRedirectUri("http://localhost:8080/krishichat/loginlogic");
+		parameters.setScope("email profile");
 		return getGoogleConnectionFactory().getOAuthOperations().buildAuthenticateUrl(parameters);
 	}
 
 	@Override
 	public String getAuthenticationToken(String code) {
-
 		return getGoogleConnectionFactory().getOAuthOperations()
-				.exchangeForAccess(code, "http://localhost:8080/loginlogic", null).getAccessToken();
+				.exchangeForAccess(code, "http://localhost:8080/krishichat/loginlogic", null).getAccessToken();
 	}
 
 	@Override
 	public Person fetchUserFromGoogle(String authToken) {
 		Google profile = new GoogleTemplate(authToken);
 		Person person = profile.plusOperations().getGoogleProfile();
+		System.out.println(authToken + "-" + person.getAccountEmail() + "-" + person.getDisplayName() + ""
+				+ person.getEmailAddresses());
 		return person;
 	}
 

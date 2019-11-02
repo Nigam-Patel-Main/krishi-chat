@@ -31,10 +31,8 @@ public class VerificationToken {
 	private String token;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@Size(max = 20)
 	private User user;
 
-	@Column(length = 30)
 	private String purpose;
 
 	@Temporal(TemporalType.TIMESTAMP)

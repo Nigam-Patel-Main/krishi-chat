@@ -23,9 +23,7 @@ public class FriendList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private
-
-	int id;
+	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "from_id")

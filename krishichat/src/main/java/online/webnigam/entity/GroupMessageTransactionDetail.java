@@ -24,7 +24,7 @@ public class GroupMessageTransactionDetail {
 	private int id;
 
 	@ManyToOne
-	@JoinColumn(name = "groupmessagetransaction_id")
+	@JoinColumn(name = "groupMessageTransactionId")
 	private GroupMessageTransaction groupMessageTransaction;
 
 	@ManyToOne

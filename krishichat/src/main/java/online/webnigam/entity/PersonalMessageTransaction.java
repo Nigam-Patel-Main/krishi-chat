@@ -37,11 +37,6 @@ public class PersonalMessageTransaction {
 	@Column(name = "is_readed")
 	private boolean isReaded = false;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
-	@Column(name = "created_at")
-	private Date createdAt = new Date();
-
 	public boolean isReaded() {
 		return isReaded;
 	}
@@ -49,6 +44,11 @@ public class PersonalMessageTransaction {
 	public void setReaded(boolean isReaded) {
 		this.isReaded = isReaded;
 	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+	@Column(name = "created_at")
+	private Date createdAt = new Date();
 
 	public int getId() {
 		return id;

@@ -1,4 +1,5 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -55,10 +56,21 @@
 									style="cursor: default">
 									<div class="row">
 										<div class="col-lg-3 text-center chat_img px-0">
-											<img src="${profileImage}/${user.profileImagePath}"
-												style="width: 50px; height: 50px;"
-												class="rounded-circle chat-sidebar-profile-image seeProfileButton pointer"
-												data-id="${user.id}">
+											<c:choose>
+												<c:when
+													test="${fn:startsWith(user.profileImagePath, 'http')}">
+													<img src="${user.profileImagePath}"
+														style="width: 50px; height: 50px;"
+														class="rounded-circle chat-sidebar-profile-image seeProfileButton pointer"
+														data-id="${user.id}">
+												</c:when>
+												<c:otherwise>
+													<img src="${profileImage}/${user.profileImagePath}"
+														style="width: 50px; height: 50px;"
+														class="rounded-circle chat-sidebar-profile-image seeProfileButton pointer"
+														data-id="${user.id}">
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="col-lg-8 chat_ib p-o my-0 my-auto pointer"
 											data-id="${user.id}" data-email="${user.email }"
@@ -160,8 +172,7 @@
 										<a class="dropdown-item" href="#!"
 											id="editMemberDropdownButton">Edit Members</a> <a
 											class="dropdown-item" href="#!"
-											id="editGroupDetailDropdownButton">Edit Group Detail</a>
-											<a
+											id="editGroupDetailDropdownButton">Edit Group Detail</a> <a
 											class="dropdown-item" href="#!" id="clearChatDropdownButton">Clear
 											Chat</a>
 									</div>
@@ -433,5 +444,5 @@
 	</div>
 </div>
 
-<script  src="${js}/compressor.js" type="text/javascript"></script>
+<script src="${js}/compressor.js" type="text/javascript"></script>
 <jsp:include page="footer.jsp"></jsp:include>

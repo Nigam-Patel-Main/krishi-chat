@@ -32,7 +32,7 @@ public class JPAConfig {
 		properties.setProperty("hibernate.show_sql", "false");
 		properties.setProperty("hibernate.format_sql", "true");
 		properties.setProperty("hibernate.jdbc.batch_size", "15");
-		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
 

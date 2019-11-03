@@ -56,7 +56,7 @@
 						<span hidden id="profileImageContextPath">${profileImage}/</span>
 						<img src="data:,"
 							id="userProfileProfileImagePath"
-							class="mx-auto img-fluid img-thumbnail d-block" alt="avatar">
+							class="mx-auto img-fluid img-thumbnail d-block" width="100%" alt="avatar">
 					</div>
 					<div class="col-md-8">
 						<h5 id="userProfileName"></h5>

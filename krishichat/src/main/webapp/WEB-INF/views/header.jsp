@@ -63,8 +63,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-				<ul class="navbar-nav ">
-					<li class="nav-item "><a class="nav-link"
+				<ul class="navbar-nav " style="margin-top:1px;">
+					<li class="nav-item  "><a class="nav-link"
 						href="${contextPath}/home"><i class="fa fa-home fa-lg py-1"></i>
 					</a></li>
 
@@ -90,7 +90,7 @@
 
 						<li class="nav-item dropdown "><a
 							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-								<i class="fas fa-user-friends  fa -lg py-1"></i>
+								<i class="fas fa-user-friends  fa -lg pt-0"></i>
 						</a>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="${contextPath}/discoverUser">Search

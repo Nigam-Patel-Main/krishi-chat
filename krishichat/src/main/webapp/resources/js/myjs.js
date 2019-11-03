@@ -145,7 +145,16 @@ $(".seeProfileButton").click(function(){
 					$("#userProfileBirthdate").html(result.birthdate);
 				
 				$("#userProfileProfileImagePath").attr("src","");
-				$("#userProfileProfileImagePath").attr("src",$("#profileImageContextPath").html()+ result.profileImagePath);
+				var profilePath = result.profileImagePath;
+				if(profilePath.startsWith("http"))
+				{
+					$("#userProfileProfileImagePath").attr("src",result.profileImagePath);
+				}
+				else
+				{
+					$("#userProfileProfileImagePath").attr("src",$("#profileImageContextPath").html()+ result.profileImagePath);
+				}
+				
 				
 				$('#userProfileModel').modal();
 			},

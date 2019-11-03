@@ -32,8 +32,18 @@
 					<div class="card-body ">
 						<div class="row">
 							<div class="col-lg-4 text-center">
-								<img src="${profileImage}/${user.profileImagePath}"
-									class="img rounded img-fluid" />
+								<c:choose>
+									<c:when
+										test="${fn:startsWith(user.profileImagePath, 'http')}">
+										<img src="${user.profileImagePath}" class="rounded"
+											width="100%"  id="navbarProfileImage">
+									</c:when>
+									<c:otherwise>
+										<img src="${profileImage}/${user.profileImagePath}"
+											class="rounded" width="100%" 
+											id="navbarProfileImage">
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="col-lg-8">
 								<table class="table table-borderless  ">
